@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duce roll assignment</title>
+    <style>
+       #winner{
+           font-size: 40px;
+           width: 40%;
+           height: 50px;
+           border: 1px solid red;
+       }
+
+        #container{
+            display: flex;
+            width: 10%;
+            justify-content: space-between;
+        }
+
+        #container>h1{
+            border: 1px solid red;
+            height: 30px;
+            width: 40px;
+            text-align: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="winner"></div>
+    <div id="container">
+        <h1 id="member-1"></h1>
+        <h1 id="member-2"></h1>
+        <h1 id="member-3"></h1>
+        
+    </div>
+    <button id="roll">ROLL THE DICE</button>
+     <button id="reset">Reset</button>
+
+</body>
+</html>
+
+<script>
+    var random1 = Math.floor((Math.random()*6)+1) ;
+    var random2 = Math.floor((Math.random()*6)+1) ;
+    var random3 = Math.floor((Math.random()*6)+1) ;
+    var btn = document.querySelector("#roll").addEventListener("click",myroll);
+    var reset = document.querySelector("#reset").addEventListener("click",reset);
+
+    function myroll(){
+        var display = document.querySelector("#member-1").innerText=random1;
+        var display = document.querySelector("#member-2").innerText=random2;
+        var display = document.querySelector("#member-3").innerText=random3;
+
+        if(random1>random2 && random1>random3 && random2>random3){
+            document.querySelector("#member-1").style.color="green";
+            document.querySelector("#winner").innerHTML="member-1 won"           
+            document.querySelector("#member-2").style.color="yellow"
+            document.querySelector("#member-3").style.color="red"
+            
+        } 
+
+        if(random1>random2 && random1>random3 && random3>random2){
+            document.querySelector("#member-1").style.color="green";
+            document.querySelector("#winner").innerHTML="member-1 won"           
+            document.querySelector("#member-3").style.color="yellow"
+            document.querySelector("#member-2").style.color="red"
+            
+        } 
+
+        // first completed
+
+        else if(random2>random1 && random2>random3 && random1>random3){
+            document.querySelector("#member-2").style.color="green";
+            document.querySelector("#winner").innerHTML="member-2 won"
+            document.querySelector("#member-1").style.color="yellow"
+            document.querySelector("#member-3").style.color="red"
+        }
+        else if(random2>random1 && random2>random3 && random3>random1){
+            document.querySelector("#member-2").style.color="green";
+            document.querySelector("#winner").innerHTML="member-2 won"
+            document.querySelector("#member-3").style.color="yellow"
+            document.querySelector("#member-1").style.color="red"
+        }
+
+        // 2nd completed
+
+
+
+        else if(random3>random1 && random3>random2 && random1>random2){
+            document.querySelector("#member-3").style.color="green";
+            document.querySelector("#winner").innerHTML="member-3 won";
+            document.querySelector("#member-1").style.color="yellow"
+            document.querySelector("#member-2").style.color="red"
+
+        }
+
+        else if(random3>random1 && random3>random2 && random2>random1){
+            document.querySelector("#member-3").style.color="green";
+            document.querySelector("#winner").innerHTML="member-3 won"
+            document.querySelector("#member-2").style.color="yellow"
+            document.querySelector("#member-1").style.color="red"
+
+        }
+
+        // 3rd ends here
+
+        else if(random1==random2 && random1>random3 && random2>random3){
+            document.querySelector("#member-1").style.color="blue";            
+            document.querySelector("#member-2").style.color="blue";            
+            document.querySelector("#member-3").style.color="red";            
+            document.querySelector("#winner").innerHTML="member-1 and member-2 won"         
+            
+        }
+        else if(random1==random3 && random1>random2 && random3>random2){
+            document.querySelector("#member-1").style.color="blue";            
+            document.querySelector("#member-3").style.color="blue";            
+            document.querySelector("#member-2").style.color="red";            
+            document.querySelector("#winner").innerHTML="member-1 and member-3 won"         
+            
+        }
+        else if(random3==random2 && random3>random1 && random2>random1){
+            document.querySelector("#member-3").style.color="blue";            
+            document.querySelector("#member-2").style.color="blue";            
+            document.querySelector("#member-1").style.color="red";            
+            document.querySelector("#winner").innerHTML="member-3 and member2 won"         
+            
+        }      
+        // equal first greater  than case ends here
+
+
+
+        else if(random1==random2 && random1<random3 && random2<random3){
+            document.querySelector("#member-1").style.color="blue";            
+            document.querySelector("#member-2").style.color="blue";            
+            document.querySelector("#member-3").style.color="green";            
+            document.querySelector("#winner").innerHTML="member-3 won"         
+            
+        }
+        else if(random1==random3 && random1<random2 && random3<random2){
+            document.querySelector("#member-1").style.color="blue";            
+            document.querySelector("#member-3").style.color="blue";            
+            document.querySelector("#member-2").style.color="green";            
+            document.querySelector("#winner").innerHTML="member-2 won"         
+            
+        }
+        else if(random3==random2 && random3<random1 && random2<random1){
+            document.querySelector("#member-3").style.color="blue";            
+            document.querySelector("#member-2").style.color="blue";            
+            document.querySelector("#member-1").style.color="green";            
+            document.querySelector("#winner").innerHTML="member-1 won"         
+            
+        }      
+        else if(random3==random2 && random3==random1 && random2==random1){
+            document.querySelector("#member-3").style.color="blue";            
+            document.querySelector("#member-2").style.color="blue";            
+            document.querySelector("#member-1").style.color="blue";            
+            document.querySelector("#winner").innerHTML="All won"         
+            
+        }      
+        
+    }
+
+    function reset(){
+        window.location.href="index.html"
+    }
+</script>
